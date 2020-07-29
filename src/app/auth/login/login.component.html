@@ -1,0 +1,18 @@
+<section fxLayoutAlign="center center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field >
+      <mat-label>Email</mat-label>
+      <input type="email" placeholder="Your Email" matInput formControlName="email">
+      <mat-error>Email must be a valid email</mat-error>
+      <mat-hint>Please enter your email kind sir... or mam</mat-hint>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Password</mat-label>
+      <input type="password" matInput placeholder="Your Password" formControlName="password" matControlName>
+      <mat-error *ngIf="loginForm.get('password').value.length <= 6">Password must be more than 6 characters</mat-error>
+      <mat-hint>Please enter a valid password</mat-hint>
+    </mat-form-field>
+    <button *ngIf="!showSpinner" mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+    <mat-spinner *ngIf="showSpinner" color="accent"></mat-spinner>
+  </form>
+</section>
